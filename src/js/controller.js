@@ -12,7 +12,7 @@ const timeout = function (s) {
 
 ///////////////////////////////////////
 
-console.log("hello rahul");
+
 
 
 const renderSpinner =(parentElement)=>{
