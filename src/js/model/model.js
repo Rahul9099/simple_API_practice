@@ -1,19 +1,14 @@
+import { API_URL } from "../config";
+import { getJSON } from "../helper";
 export const state = {
   recipe: {},
 };
 
 export const loadRecipe = async (id) => {
   try {
-    const res = await fetch(
-      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
-    );
-    const dataRecipe = await res.json();
-    if (!res.ok) {
-      throw new Error(`${dataRecipe.message} (${res.status})`);
-    }
-    
+    const url = `${API_URL}${id}`;
+    const dataRecipe = await getJSON(url);
     // >>>removing the _ in data and storing in state object and only using the state object for rendering data as a database
-
     const { recipe } = dataRecipe.data;
     state.recipe = {
       id: recipe.id,
@@ -27,6 +22,6 @@ export const loadRecipe = async (id) => {
     };
     console.log(state.recipe);
   } catch (error) {
-    console.log("error from model.js>>>", error);
+    console.error("error from model.js>>>", error);
   }
 };
