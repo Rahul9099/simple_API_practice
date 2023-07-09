@@ -13,17 +13,21 @@ import { defineConfig, loadEnv } from 'vite'
 //     root:"src",
 //   }
 // })
+import.meta.hot;
 
-export default {
+export default defineConfig(({ command, mode }) => {
   // Other Vite options...
+  return{
+    
   build: {
     rollupOptions: {
       input: 'index.html', // Specify the correct path to your entry point file
     },
     optimizeDeps: {
       // include: ['src/**/*.js'], // Add file patterns to include for pre-bundling
-      include: ['src/*'],
+      include: ['src/**/*.js'],
     },
-  },
-};
+  }
+}
+});
 
